@@ -27,11 +27,11 @@ class Auth extends BaseController
         $userModel = new UserModel();
         $userModel->save($input);
 
-        $this->getJWTForUser(
+        $msg = $this->getJWTForUser(
             $input['name'],
             ResponseInterface::HTTP_CREATED
         );
-        return redirect()->to('/');
+         return redirect()->to('/')->with('msg', $msg);
 
     }
    
@@ -56,8 +56,8 @@ class Auth extends BaseController
                     ResponseInterface::HTTP_BAD_REQUEST
                 );
         }
-       $this->getJWTForUser($input['name']);
-        return redirect()->to('/dashboard');
+        $msg = $this->getJWTForUser($input['name']);
+        return redirect()->to('/dashboard')->with('msg', $msg);
     }
 
     private function getJWTForUser( string $name,int $responseCode = ResponseInterface::HTTP_OK)

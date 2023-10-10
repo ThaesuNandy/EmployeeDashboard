@@ -125,32 +125,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        // $('#emplyoee-list').DataTable();
-        $('#employeeForm').on('submit', function (e) {
-            e.preventDefault();
-            let form = $(this);
-
-            $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(),
-                success: function (response) {
-                    $('#addEmployeeModal').modal('hide');
-                    window.location.reload();
-                    // if (response.success) {
-                      
-                    // } else if (response.error) {
-                    //     console.log(response.error);
-                    //     $('#validationErrors').html(response.error).show();
-                    // }
-                },
-                error: function (error) {
-                    $('#validationErrors').html('An error occurred while processing your request. Please try again later.').show();
-                },
-            });
-        });
-    });
-</script>
 <?=$this->endSection()?>
